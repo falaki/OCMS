@@ -1,0 +1,15 @@
+ny researchers are trying to build communication systems and
+applications to leverage the potentials of ubiquitous mobile computers
+and smartphones. The best approach to achieve this goal is
+implementing the intended system and evaluating it on real devices.
+However, it is always helpful to evaluate algorithms and systems with
+simulators before deployments, especially when implementation and
+deployment is as difficult as it is on cell phones.
+
+The Opportunistic Connectivity Management Simulator (OCMS) is an
+extensible platform that I developed to simulate the behavior of a
+mobile device at a system level with respect to different
+opportunistic connectivity management algorithms.
+
+Visit <http://blizzard.cs.uwaterloo.ca/mhfalaki/ocms/> for more
+details.
