@@ -1,0 +1,119 @@
+ /** 
+  * Opportunistic Connectivity Management Simulator
+  *
+  * Copyright (C) 2007 Hossein Falaki
+  */
+
+package ocms.algorithms.statistics;
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+import ocms.util.Block;
+
+/**
+  * A CDF object represent a Cumulative distribution function.
+  *
+  * @author     Hossein Falaki
+  */
+
+public class CDF
+{
+    /** Keeps the objects to be ranked */
+    ArrayList<Block> list;
+
+    /** Keeps sum of all the values */
+    double total;
+
+
+    /**
+      * Constructs an empty CDF  object.
+      *
+      */
+    public CDF()
+    {
+        list = new ArrayList<Block>();
+        total = 0;
+    }
+
+    /**
+      * Constructs a CDF object with the given ranking object.
+      *
+      * @param      ranking         the ranking object to build the CDF for
+      */
+    public CDF(Ranking ranking)
+    {
+        ArrayList<Block> inputlist = ranking.getItems();
+        Block newblock;
+        list = new ArrayList<Block>();
+        total = 0;
+
+        for (Block item : inputlist)
+        {
+            total += item.getLength();
+            newblock = new Block(item);
+            newblock.setNaturalOrder(Block.LENGTH);
+            list.add(newblock);
+        }
+    }
+
+    /**
+      * Constructs a CDF object with the given Histogram object.
+      *
+      * @param      hist            the histogram object to build the CDF
+      *                             for
+      */
+    public CDF(Histogram hist)
+    {
+        HashSet<Double> bins = hist.getBins();
+
+        for (Double b : bins)
+        {
+            
+        }
+
+        
+    }
+
+
+
+    /**
+      * Adds the object to the list of objects.
+      * 
+      * @param      item            the item to be added to the list of objects.
+      */
+    public void add(Block item)
+    {
+        total += item.getLength();
+        Block newblock = new Block(item);
+        newblock.setNaturalOrder(Block.LENGTH);
+
+        list.add(newblock);
+    }
+
+    /**
+      * Returns a string representation of the CDF object.
+      *
+      * @return                     string representation of the ranking objects
+      */
+    public String toString()
+    {
+        StringBuffer sb = new StringBuffer();
+        int counter = 1;
+        double totalnum = list.size();
+        double currentsum = 0;
+        Collections.sort(list);
+
+        for( Block item : list)
+        {
+            currentsum += item.getLength();
+            sb.append(((double)counter/totalnum)*100 + "\t" + item.getLength() + "\t" + (currentsum/total)*100 + "\n");
+            counter++;
+        }
+
+        return sb.toString();
+    }
+
+}
+
